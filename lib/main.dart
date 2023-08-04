@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:myanmar_tools/myanmar_tools.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 import 'package:printpdf/preview.dart';
 import 'package:rabbit_converter/rabbit_converter.dart';
 
@@ -59,27 +58,13 @@ class _MyHomePageState extends State<MyHomePage> {
         .map((e) => e.map((e) => e.isNotEmpty ? Rabbit.uni2zg(e) : e).toList())
         .toList();
 
-    final table = pw.TableHelper.fromTextArray(
-      data: tableData,
-      headerCount: 2,
-      cellAlignment: pw.Alignment.center,
-      cellPadding: const pw.EdgeInsets.all(5),
-      headerStyle: pw.TextStyle(
-        fontWeight: pw.FontWeight.bold,
-      ),
-    );
-
     final tff = pw.Font.ttf(font);
     doc.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
         theme: pw.ThemeData(
             defaultTextStyle: pw.TextStyle(fontFallback: [tff, mtff])),
         build: (pw.Context context) {
-          // return pw.Column(children: [
-          //   pw.Text("Sein Kyaw Moe"),
-          //   pw.SizedBox(height: 30),
-          //   table
-          // ]);
+
           return pw.Column(children: [
             pw.Text("Sein Kyaw Moe"),
             pw.SizedBox(height: 40),
